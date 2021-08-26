@@ -52,15 +52,15 @@ export class App extends Component {
 
     if(validFname.length>2 && validLname.length>2 && validate.test(validEmail) ){
       
-      error=<p>Success</p>
+      this.setState({heading:"React Demo Success"});
 
 
     }else{
       
-      error=<p>Invalid input , please try again</p>
+      this.setState({heading:"React Demo Invalid inputs try again"});
     }   
     this.setState({errorMessage : error});
-    this.setState({heading:"React Demo Success"});
+    
   }
   
   render() {
