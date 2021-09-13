@@ -4,16 +4,19 @@ import axios from 'axios';
 export class Register extends Component {
     constructor(props) {
         super(props)
-  
+        console.log("constructor")
       
         this.state = {
            fname: "",
            lname: "",
            email: "",
-           heading: "React Demo app", 
+           username:"",
+           password:"",
+           heading: "React Demo app",
         }
       }
-   
+      
+    
       handleFname=(event)=>{
         this.setState({
           fname: event.target.value,
@@ -26,9 +29,21 @@ export class Register extends Component {
         
         })
       }
+      handleUname=(event)=>{
+        this.setState({
+          username: event.target.value,
+        
+        })
+      }
       handleEmail=(event)=>{
         this.setState({
           email: event.target.value,
+        
+        })
+      }
+      handlePassW=(event)=>{
+        this.setState({
+          password: event.target.value,
         
         })
       }
@@ -39,19 +54,22 @@ export class Register extends Component {
     
         let validFname = this.state.fname;
         let validLname = this.state.lname;
+        let validUname = this.state.username;
         let validEmail = this.state.email;
+        let validPass = this.state.password;
         let error = '';
         let validate = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
+        let validateP = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/;
         
     
-        if(validFname.length>2 && validLname.length>2 && validate.test(validEmail) ){
+        if(validFname.length>2 && validLname.length>2 && validUname.length>2 && validate.test(validEmail) && validPass.test(validateP)){
           
           this.setState({heading:"React Demo Success"});
           
          
-            axios.post('http://localhost:3000/users', this.state)
+            axios.post('http://localhost:4000/api/signup', this.state)
             .then(res => {
-               console.log('success',res )
+               console.log('success',res)
             })
     
     
@@ -59,16 +77,24 @@ export class Register extends Component {
         }else{
           
           this.setState({heading:"React Demo Invalid inputs try again"});
+    
         }   
         this.setState({errorMessage : error});
         
     }
+    componentDidUpdate(prevProps,prevState){
+      console.log("Did update",prevProps.data,prevState.data)
+    }
+
   
     render() {
         let firsname = '';
         let  lastname = '';
         let emaila = ''; 
+        let valusername= '';
+        let valpass = ''; 
         let validateEmail = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
+        let validatePassword = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/;
         if (this.state.fname ==='' &&  this.state.fname.length <=2) {
           firsname = <span>Invalid Input</span>;
         } else {
@@ -77,11 +103,21 @@ export class Register extends Component {
           lastname = <span>Invalid Input</span>;
         } else {
           lastname = '';
-        }if ( this.state.email !=='' && validateEmail.test(this.state.email)) {
+         }if (this.state.lname ==='' && this.state.username.length <=2 ) {
+          valusername = <span>Invalid Username</span>;
+        } else {
+          valusername = '';
+        }
+        if ( this.state.email !=='' && validateEmail.test(this.state.email)) {
           emaila = '';
         } else {
           
           emaila = <span>Invalid Email</span>;
+        } if ( this.state.email !=='' && validatePassword.test(this.state.password)) {
+          valpass = '';
+        } else {
+          
+          valpass = <span>Invalid Password</span>;
         }
         console.log('Render')
         return (
@@ -91,20 +127,25 @@ export class Register extends Component {
               
                       <h1>{this.state.heading}</h1>
                       {this.state.errorMessage}
-                      <div className="form-group">
-                     
+                      <div className="form-group">                     
                       <input type="text" required placeholder="First Name" value={this.state.fname} onChange={this.handleFname}/>
                       {firsname}
                       </div>
                       <div className="form-group">
-                     
                       <input type="text" required placeholder="Last Name" value={this.state.lname} onChange={this.handleLname}/>
                       {lastname}
                       </div>
                       <div className="form-group">
-                      
+                      <input type="text" required placeholder="Username" value={this.state.username} onChange={this.handleUname}/>
+                      {valusername}
+                      </div>
+                      <div className="form-group">
                       <input type="email" required placeholder="Email" value={this.state.email} onChange={this.handleEmail}/>
                       {emaila}
+                      <div className="form-group">
+                      <input type="password" required placeholder="Password" value={this.state.password} onChange={this.handlePassW}/>
+                      {valpass}
+                      </div>
                       </div>
                       <button  type="submit" class="registerbtn">Register</button>
              </form>
