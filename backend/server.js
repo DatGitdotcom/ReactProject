@@ -7,10 +7,13 @@ const cors = require ('cors')
 
 dotenv.config()
 
-mongoose.connect('mongodb+srv://Daniel:DanielDB@cluster0.zumeg.mongodb.net/mytable?retryWrites=true&w=majority', () => console.log("Database connected "))
+//Database 
+mongoose.connect(process.env.DB_CONNECT, () => console.log("Database connected "))
 
 app.use(express.json())
 app.use(cors())
+
+//routes
 app.use('/api', routesUrls)
 
 app.listen(4000 , () => ("Server is running")) 

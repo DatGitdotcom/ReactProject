@@ -62,15 +62,16 @@ export class Register extends Component {
         let validateP = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/;
         
     
-        if(validFname.length>2 && validLname.length>2 && validUname.length>2 && validate.test(validEmail) && validPass.test(validateP)){
+        if(validFname.length>2 && validLname.length>2 && validUname.length>2 && validate.test(validEmail) && validateP.test(validPass)){
           
-          this.setState({heading:"React Demo Success"});
+         
           
          
             axios.post('http://localhost:4000/api/signup', this.state)
             .then(res => {
                console.log('success',res)
             })
+            this.setState({heading:"React Demo Success"});
     
     
     
@@ -82,9 +83,7 @@ export class Register extends Component {
         this.setState({errorMessage : error});
         
     }
-    componentDidUpdate(prevProps,prevState){
-      console.log("Did update",prevProps.data,prevState.data)
-    }
+  
 
   
     render() {
@@ -103,7 +102,7 @@ export class Register extends Component {
           lastname = <span>Invalid Input</span>;
         } else {
           lastname = '';
-         }if (this.state.lname ==='' && this.state.username.length <=2 ) {
+         }if (this.state.username ==='' && this.state.username.length <=2 ) {
           valusername = <span>Invalid Username</span>;
         } else {
           valusername = '';
@@ -113,7 +112,7 @@ export class Register extends Component {
         } else {
           
           emaila = <span>Invalid Email</span>;
-        } if ( this.state.email !=='' && validatePassword.test(this.state.password)) {
+        } if ( this.state.password !=='' && validatePassword.test(this.state.password)) {
           valpass = '';
         } else {
           

@@ -8,10 +8,10 @@ router.post('/signup' , (req, res) => {
 
       const signUpUser = new singUpTempcopy({
           fname: req.body.fname,
-          lname: req.body.fname,
-          username: req.body.fname,
-          email: req.body.fname,
-          password: req.body.fname
+          lname: req.body.lname,
+          username: req.body.username,
+          email: req.body.email,
+          password: req.body.password
       })
       signUpUser.save()
       .then(data =>{
