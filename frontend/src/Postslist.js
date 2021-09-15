@@ -29,15 +29,15 @@ export class Postslist extends Component {
      
     }
   
-    deleteRegistered= async (id)=>{
-       await axios.delete(`http://localhost:5000/users/${id}`)
+    deleteRegistered= async (_id)=>{
+       await axios.delete(`http://localhost:4000/api/${_id}`)
         .then(response =>{
             this.refreshUsers();
             console.log("success" + response)
         }).catch(error=>console.log(error));
     }
     refreshUsers(){
-        axios.get('http://localhost:5000/users')
+        axios.get('http://localhost:4000/api/usersList')
         .then(response =>{
             this.setState({
                 posts : response.data
@@ -74,8 +74,10 @@ export class Postslist extends Component {
                 <Table >
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>First Name</th>
                             <th>Last Name</th>
+                            <th>Username</th>
                             <th>Email</th>
                             <th>Actions</th>
                         </tr>
@@ -96,10 +98,12 @@ export class Postslist extends Component {
                         :null}
                         { posts.map(post =>
                         <tr key={post.id}>
+                        <td> {post._id } </td>
                         <td> {post.fname } </td>
                         <td>  {post.lname} </td>
+                        <td>  {post.username} </td>
                         <td>  {post.email }</td>
-                        <td><Button bg="dark" variant="Dark" onClick={this.deleteRegistered.bind(this, post.id)}>Delete</Button></td>
+                        <td><Button bg="dark" variant="Dark" onClick={this.deleteRegistered.bind(this, post._id)}>Delete</Button></td>
                         <td><Button bg="dark" variant="Dark"onClick={this.EditUsers.bind(this, post.id)} >Edit</Button></td>   
                         </tr>
                         )}
