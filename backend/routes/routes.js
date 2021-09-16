@@ -68,12 +68,11 @@ router.post('/signup' , async (req, res) => {
     // update a user 
     router.patch('/:UserUpdate' , async (req, res) => {
         try{
-      const updateUser = await singUpTempcopy.remove({_id: req.params.UserUpdate} ,
-         {$set: { fname: req.body.fname}
-      })
-      res.json(updateUser)
-
-        }catch(err){
+            const options = {new: true}
+            const updateUser = await singUpTempcopy.findByIdAndUpdate({_id: req.params.UserUpdate} , options)
+            res.json(updateUser)
+      
+              }catch(err){
             res.json({message: err})
         }
     })

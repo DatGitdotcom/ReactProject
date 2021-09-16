@@ -15,6 +15,8 @@ export class Postslist extends Component {
            Ufname:'',
            Ulname:'',
            Uemail:'',
+           Uusername:''
+
         }
     }
 
@@ -51,11 +53,16 @@ export class Postslist extends Component {
 
 
     }
-    EditUsers= (id)=>{
-       console.log(id);
+    EditUsers= (_id , fname , lname ,username, email)=>{
+       console.log(_id , fname , lname ,username, email);
         this.setState({
             editing:true,
-  
+            Uid: _id,
+           Ufname:fname,
+           Ulname:lname,
+           Uemail: email,
+           Uusername: username,
+
         })
      }
      CancelEdit= ()=>{
@@ -87,9 +94,11 @@ export class Postslist extends Component {
                             {this.state.editing ?
                            
                                 <tr>
-                            <td><input type="Text" defaultValue="Name" /> </td>
-                            <td><input type="text" defaultValue="Lname" /> </td>
-                            <td><input type="email" defaultValue="Email"/></td>
+                            <td>{this.state.Uid}</td>        
+                            <td><input type="Text" defaultValue={this.state.Ufname} /> </td>
+                            <td><input type="text" defaultValue={this.state.Ulname} /> </td>
+                            <td><input type="text" defaultValue={this.state.Uusername}/></td>
+                            <td><input type="email" defaultValue={this.state.Uemail}/></td>
                             <td><td><Button bg="dark" variant="Dark"onClick={this.Submitedit} >Submit Edit</Button></td></td>
                             <td><td><Button bg="dark" variant="Dark"onClick={this.CancelEdit} >Cancel</Button></td></td>
                         
@@ -104,7 +113,7 @@ export class Postslist extends Component {
                         <td>  {post.username} </td>
                         <td>  {post.email }</td>
                         <td><Button bg="dark" variant="Dark" onClick={this.deleteRegistered.bind(this, post._id)}>Delete</Button></td>
-                        <td><Button bg="dark" variant="Dark"onClick={this.EditUsers.bind(this, post.id)} >Edit</Button></td>   
+                        <td><Button bg="dark" variant="Dark"onClick={this.EditUsers.bind(this, post._id , post.fname, post.lname , post.username , post.email)} >Edit</Button></td>   
                         </tr>
                         )}
                     </tbody>
