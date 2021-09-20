@@ -70,8 +70,43 @@ export class Postslist extends Component {
             editing:false,
         })
      }
-     Submitedit= ()=>{
-       console.log("Submit edited users")
+     handleFname=(event)=>{
+        this.setState({
+          Ufname: event.target.value,
+        
+        })
+      }
+      handleLname=(event)=>{
+        this.setState({
+          Ulname: event.target.value,
+        
+        })
+      }
+      handleUname=(event)=>{
+        this.setState({
+         Uusername: event.target.value,
+        
+        })
+      }
+      handleEmail=(event)=>{
+        this.setState({
+          Uemail: event.target.value,
+        
+        })
+      }
+      
+     Submitedit= async (Uid)=>{
+        await axios.patch(`http://localhost:4000/api/Edit/${Uid}` ,
+         {
+             fname: this.state.Ufname,
+            lname:this.state.Ulname,
+            username:this.state.Uusername,
+            email:this.state.Uemail,
+          } )
+         .then(response =>{
+             this.refreshUsers();
+             console.log("success" + response.data)
+         }).catch(error=>console.log(error)); 
      }
     render() {
         const { posts } = this.state
@@ -95,11 +130,11 @@ export class Postslist extends Component {
                            
                                 <tr>
                             <td>{this.state.Uid}</td>        
-                            <td><input type="Text" defaultValue={this.state.Ufname} /> </td>
-                            <td><input type="text" defaultValue={this.state.Ulname} /> </td>
-                            <td><input type="text" defaultValue={this.state.Uusername}/></td>
-                            <td><input type="email" defaultValue={this.state.Uemail}/></td>
-                            <td><td><Button bg="dark" variant="Dark"onClick={this.Submitedit} >Submit Edit</Button></td></td>
+                            <td><input type="Text" defaultValue={this.state.Ufname} value={this.state.Ufname} onChange={this.handleFname} /> </td>
+                            <td><input type="text" defaultValue={this.state.Ulname}  value={this.state.Ulname} onChange={this.handleLname} /> </td>
+                            <td><input type="text" defaultValue={this.state.Uusername} value={this.state.Uusername} onChange={this.handleUname} /></td>
+                            <td><input type="email" defaultValue={this.state.Uemail} value={this.state.Uemail} onChange={this.handleEmail} /></td>
+                            <td><td><Button bg="dark" variant="Dark"onClick={this.Submitedit.bind(this, this.state.Uid)} >Submit Edit</Button></td></td>
                             <td><td><Button bg="dark" variant="Dark"onClick={this.CancelEdit} >Cancel</Button></td></td>
                         
                         </tr>

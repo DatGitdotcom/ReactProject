@@ -66,17 +66,23 @@ router.post('/signup' , async (req, res) => {
     })
 
     // update a user 
-    router.patch('/:UserUpdate' , async (req, res) => {
+
+    router.patch('/Edit/:id', async (req, res ) => {
         try{
-            const options = {new: true}
-            const updateUser = await singUpTempcopy.findByIdAndUpdate({_id: req.params.UserUpdate} , options)
-            res.json(updateUser)
-      
-              }catch(err){
+            const id = req.params.id;
+            const updates = req.body;
+            const options = {new: true};
+
+            const result = await singUpTempcopy.findByIdAndUpdate(id, updates , options)
+
+
+            res.json(result)
+       
+
+        }catch(err){
             res.json({message: err})
         }
     })
-
     
 
 module.exports = router
