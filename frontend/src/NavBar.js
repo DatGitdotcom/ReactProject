@@ -9,6 +9,7 @@ import {
 import Register from './Register';
 import Home from './Home';
 import Postslist from './Postslist';
+import Login from './Login' ; 
 
 
 export class NavBar extends Component {
@@ -23,6 +24,7 @@ export class NavBar extends Component {
             <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
                 <Nav.Link as={Link} to={'/Home'}>Home</Nav.Link>
+                <Nav.Link as={Link} to={'/Login'}>Login</Nav.Link>
                 <Nav.Link as={Link} to={'/Register'}>Register</Nav.Link>
                 <Nav.Link as={Link} to={'/View'}>Views</Nav.Link>
                
@@ -33,6 +35,9 @@ export class NavBar extends Component {
             <Switch>
             <Route path="/Home">
                 <Home/>
+            </Route>
+            <Route path="/Login">
+                <Login/>
             </Route>
             <Route path="/Register">
                 <Register/>

@@ -4,7 +4,7 @@ const singUpTempcopy = require('../models/SignUpModels')
 const bcrypt = require('bcrypt')
 
 
-// get all data
+// get record from DB
 router.get('/usersList' , async (req, res) => {
     try{
         const postList = await singUpTempcopy.find()
@@ -31,7 +31,9 @@ router.post('/signup' , async (req, res) => {
       try{
 
         const signeduser = await signUpUser.save()
-        res.json(signeduser)
+        const {password , ...data} = await signeduser.toJSON()
+        res.json(data)
+
       }catch(err){
         res.json({message : err})
 
@@ -39,9 +41,7 @@ router.post('/signup' , async (req, res) => {
       
       })
 
-      // get post by ID
-
-  
+      // get record by ID
 
       router.get('/:getUserByID' , async (req, res) => {
         try{
@@ -82,6 +82,24 @@ router.post('/signup' , async (req, res) => {
         }catch(err){
             res.json({message: err})
         }
+    })
+
+    router.post('/Login' , async (req, res) => {
+        const user = await singUpTempcopy.FindOne({email :req.body.email})
+        if (!user){
+            res.status(404).send({
+                message:'Invalid Credentials'
+            })
+        }
+        if (!await bcrypt.compare(req.body.password, user.password) ){
+            res.status(400).send({
+                message:'Invalid Credentials'
+            })
+        }
+        res.send(user)
+
+
+        
     })
     
 

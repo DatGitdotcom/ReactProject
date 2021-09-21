@@ -4,6 +4,7 @@ import './App.css';
 import {Table , Button} from 'react-bootstrap'
 
 
+
 export class Postslist extends Component {
     constructor(props) {
         super(props)
@@ -153,7 +154,8 @@ export class Postslist extends Component {
                         )}
                     </tbody>
                   
-                </Table>               
+                </Table>
+               
             </div>
         )
     }
