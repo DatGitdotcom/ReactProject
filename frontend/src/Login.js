@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios';
 import './App.css';
 
 export class Login extends Component {
@@ -10,6 +11,7 @@ export class Login extends Component {
        username:"",
        password:"",
        heading: "Login",
+
     }
   }
   
@@ -33,31 +35,29 @@ export class Login extends Component {
   }
 
 
-  submitForm = event =>{
+  submitForm = async (event) =>{
     event.preventDefault()
+    let username = this.state.username;
+    let password = this.state.password;
 
-    const data ={
-    logUname : this.state.username,
-    logPass : this.state.password
+
+    if( username.length>2 && password.length>2){
+
+    const data ={username , password }
+    console.log(data)
+    await  axios.post('http://localhost:4000/api/Login', data )
+    .then(res => {
+      localStorage.setItem('token', res.data.token);
+       console.log('success',res)
+    })    
+  }else{
+      
+    this.setState({heading:"Login Failed"});
+
   }
 
-    if( logUname.length>2 && logPass.length>2){
-
-        axios.post('http://localhost:4000/api/Login', data)
-            .then(res => {
-               console.log('success',res)
-            })    
-        this.setState({heading:"Logging User in"});
 
 
-
-    }else{
-      
-      this.setState({heading:"Login Failed"});
-
-    }   
-
-    
 }
 
 
@@ -70,7 +70,6 @@ render() {
          
           
                   <h1>{this.state.heading}</h1>
-                  {this.state.errorMessage}
                   <div className="form-group">
                                      
                   <div className="form-group">
@@ -83,7 +82,7 @@ render() {
                   
                   </div>
                   </div>
-                  <button  type="submit" class="registerbtn">Register</button>
+                  <button  type="submit" class="registerbtn">Login</button>
          </form>
         </div>
         

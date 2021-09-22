@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router()
 const singUpTempcopy = require('../models/SignUpModels')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const dotenv = require('dotenv')
 
 
 // get record from DB
@@ -84,23 +86,58 @@ router.post('/signup' , async (req, res) => {
         }
     })
 
-    router.post('/Login' , async (req, res) => {
-        const user = await singUpTempcopy.FindOne({email :req.body.email})
+    router.post('/Login' , async (req, res) => {  
+        try{
+        const user = await singUpTempcopy.findOne({username :req.body.username})
         if (!user){
-            res.status(404).send({
-                message:'Invalid Credentials'
+            res.json({status:'error',
+                message:'UserName'
             })
         }
         if (!await bcrypt.compare(req.body.password, user.password) ){
-            res.status(400).send({
-                message:'Invalid Credentials'
+            res.json({status:'error',
+            message:'Password'
+        })
+        }
+        const token = jwt.sign({_id: user._id , username: user.username}, process.env.MY_SECRET)
+
+        res.cookie('jwt', token ,{
+            httpOnly: true ,
+            maxAge: 6 * 60 *60 * 1000 
+        })
+
+        res.send({message:'Logged in'})  
+    }catch(err){
+        res.json({message: err})
+    }
+    })
+
+    router.get('/User' , async (req, res) => {
+        try{
+        const cookie = req.cookies['jwt']
+        const identity = jwt.verify(cookie , process.env.MY_SECRET )
+        if (!identity){
+            res.status(401).send({
+                message:'Unauthenticated'
             })
         }
-        res.send(user)
+       const user = await singUpTempcopy.findOne({_id: identity._id})
+       const {password, ...data}= await user.toJSON()
+       
+       res.send(data)
+    }catch(err){
+        const errror = handleError(err)
 
+        res.status(401).json({ error: errror})
 
-        
+    }
+   
     })
+    router.post('/Logout' , async (req, res) => {
+        res.cookie('jwt' , '' , {maxAge:0});
+        res.send({message:'Logged Out'})
+    })
+
     
 
 module.exports = router

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css';
 import axios from 'axios';
+
 export class Register extends Component {
     constructor(props) {
         super(props)
@@ -72,9 +73,6 @@ export class Register extends Component {
                console.log('success',res)
             })
             this.setState({heading:"React Demo Success"});
-    
-    
-    
         }else{
           
           this.setState({heading:"React Demo Invalid inputs try again"});

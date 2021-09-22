@@ -5,6 +5,8 @@ const dotenv = require('dotenv')
 const routesUrls = require ('./routes/routes')
 const cors = require ('cors')
 const bodyParser = require('body-parser')
+const cookieParser = require ('cookie-parser')
+
 
 dotenv.config()
 app.use(bodyParser.urlencoded({extended: false}))
@@ -14,7 +16,9 @@ app.use(bodyParser.json())
 mongoose.connect(process.env.DB_CONNECT, () => console.log("Database connected "))
 
 app.use(express.json())
-app.use(cors())
+app.use(cookieParser())
+app.use(cors({  credentials:true
+}))
 
 //routes
 app.use('/api', routesUrls)
