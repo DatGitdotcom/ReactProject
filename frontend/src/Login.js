@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import './App.css';
+ import {Redirect} from "react-router-dom";
+ 
 
 export class Login extends Component {
   constructor(props) {
@@ -41,24 +43,24 @@ export class Login extends Component {
     let password = this.state.password;
 
 
-    if( username.length>2 && password.length>2){
+              if( username.length>2 && password.length>2){
 
-    const data ={username , password }
-    console.log(data)
-    await  axios.post('http://localhost:4000/api/Login', data )
-    .then(res => {
-      localStorage.setItem('token', res.data.token);
-       console.log('success',res)
-    })    
-  }else{
-      
-    this.setState({heading:"Login Failed"});
+              const data ={username , password }
+              console.log(data)
+                    await  axios.post('http://localhost:4000/api/Login', data )
+                    .then(res => {
+                      localStorage.setItem('token', res.data.token);
+                      console.log('success',res)
 
-  }
+                      return  <Redirect  to="UserHome" />
+                    })    
+            }else{
+                    
+                  this.setState({heading:"Login Failed"});
 
+            }
 
-
-}
+          }
 
 
 
