@@ -126,7 +126,7 @@ const verify = (req, res, next) => {
 };
 
 // Going to the user profile
-router.get("/User", verify, async (req, res) => {
+router.post("/User", verify, async (req, res) => {
   const userID = req.user;
   try {
     const user = await singUpTempcopy.findOne({ _id: userID });
@@ -139,10 +139,15 @@ router.get("/User", verify, async (req, res) => {
     res.status(401).json({ error: errror });
   }
 
+  //Test route
+
   router.get("/TestRoute", async (req, res) => {
     res.json("Route success");
   });
 });
+
+ // Logging users out 
+
 router.post("/Logout", async (req, res) => {
   res.cookie("jwt", "", { maxAge: 0 });
   res.send({ message: "Logged Out" });
