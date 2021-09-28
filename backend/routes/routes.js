@@ -99,7 +99,7 @@ router.post("/Login", async (req, res) => {
       maxAge: 6 * 60 * 60 * 1000,
     });
 
-    res.send({ message: "Logged in", token });
+    res.json({ message: "Logged in", token });
   } catch (err) {
     res.json({ message: err });
   }
@@ -127,7 +127,7 @@ const verify = (req, res, next) => {
 
 // Going to the user profile
 router.post("/User", verify, async (req, res) => {
-  const userID = req.user;
+  const userID = req.user._id;
   try {
     const user = await singUpTempcopy.findOne({ _id: userID });
     const { password, ...data } = await user.toJSON();
