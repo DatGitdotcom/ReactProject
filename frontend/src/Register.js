@@ -123,7 +123,7 @@ export class Register extends Component {
              
               
                       <h1>{this.state.heading}</h1>
-                      {this.state.errorMessage}
+                      
                       <div className="form-group">                     
                       <input type="text" required placeholder="First Name" value={this.state.fname} onChange={this.handleFname}/>
                       {firsname}

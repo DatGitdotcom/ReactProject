@@ -11,10 +11,15 @@ import Home from './Home';
 import Postslist from './Postslist';
 import Login from './Login' ; 
 import UserHome from './UserHome';
+import EditUser from './EditUser';
 
 
 export class NavBar extends Component {
     render() {
+        const details=(props)=>{
+            return <Detail/>
+        }
+
         return (
             <Router>
             <div>
@@ -28,7 +33,7 @@ export class NavBar extends Component {
                 <Nav.Link as={Link} to={'/Login'}>Login</Nav.Link>
                 <Nav.Link as={Link} to={'/Register'}>Register</Nav.Link>
                 <Nav.Link as={Link} to={'/View'}>Views</Nav.Link>
-                <Nav.Link as={Link} to={'/UserHome'}>UserHome</Nav.Link>
+                
                
             </Nav>
             </Navbar.Collapse>
@@ -43,6 +48,9 @@ export class NavBar extends Component {
             </Route>
             <Route exact path="/Register">
                 <Register/>
+            </Route>
+            <Route path="/Edit/:_id" render={details}>
+                <EditUser/>
             </Route>
             <Route exact path="/View">
                 <Postslist/>

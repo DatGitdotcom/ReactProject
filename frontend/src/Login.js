@@ -52,13 +52,13 @@ export class Login extends Component {
                       localStorage.setItem('token', res.data.token);
                       console.log('success',res)
 
-                      return  <Redirect  to="UserHome" />
-                    })    
+                       
+                    }   ) 
             }else{
                     
                   this.setState({heading:"Login Failed"});
 
-            }
+            } <Redirect  to="UserHome"/>
 
           }
 

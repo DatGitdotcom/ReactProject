@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import './App.css';
 import {Table , Button} from 'react-bootstrap'
+import {Link} from "react-router-dom";
 
 
 
@@ -136,6 +137,8 @@ export class Postslist extends Component {
                             <td><input type="text" defaultValue={this.state.Uusername} value={this.state.Uusername} onChange={this.handleUname} /></td>
                             <td><input type="email" defaultValue={this.state.Uemail} value={this.state.Uemail} onChange={this.handleEmail} /></td>
                             <td><td><Button bg="dark" variant="Dark"onClick={this.Submitedit.bind(this, this.state.Uid)} >Submit Edit</Button></td></td>
+                            
+                            <td><td><Button bg="dark" variant="Dark"  >Submit Edit</Button></td></td>
                             <td><td><Button bg="dark" variant="Dark"onClick={this.CancelEdit} >Cancel</Button></td></td>
                         
                         </tr>
@@ -149,7 +152,8 @@ export class Postslist extends Component {
                         <td>  {post.username} </td>
                         <td>  {post.email }</td>
                         <td><Button bg="dark" variant="Dark" onClick={this.deleteRegistered.bind(this, post._id)}>Delete</Button></td>
-                        <td><Button bg="dark" variant="Dark"onClick={this.EditUsers.bind(this, post._id , post.fname, post.lname , post.username , post.email)} >Edit</Button></td>   
+                        <td><Button bg="dark" variant="Dark"onClick={this.EditUsers.bind(this, post._id , post.fname, post.lname , post.username , post.email)} >Edit</Button></td>
+                        <td><td>  <Link  to={'/Edit/'+post._id}><button>Edit</button></Link> </td></td>   
                         </tr>
                         )}
                     </tbody>
