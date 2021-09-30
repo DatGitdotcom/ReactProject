@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import './App.css';
- import {Redirect} from "react-router-dom";
+ import {withRouter} from "react-router-dom";
  
 
 export class Login extends Component {
   constructor(props) {
+    
     super(props)
-   
+  
   
     this.state = {
        username:"",
@@ -37,7 +38,7 @@ export class Login extends Component {
   }
 
 
-  submitForm = async (event) =>{
+  submitForm = async (event , history) =>{
     event.preventDefault()
     let username = this.state.username;
     let password = this.state.password;
@@ -51,15 +52,20 @@ export class Login extends Component {
                     .then(res => {
                       localStorage.setItem('token', res.data.token);
                       console.log('success',res)
+                      this.props.history.push("/UserHome")
 
                        
-                    }   ) 
+                    } ) 
             }else{
                     
                   this.setState({heading:"Login Failed"});
 
-            } <Redirect  to="UserHome"/>
-
+            }
+            
+            
+          }
+          showAlert=()=> {
+            this.props.history.push("/Home");
           }
 
 
@@ -84,7 +90,10 @@ render() {
                   
                   </div>
                   </div>
-                  <button  type="submit" class="registerbtn">Login</button>
+                   <button  type="submit" class="registerbtn">Login</button>
+                   <button onClick={this.showAlert}>show alert</button> 
+                   
+                 
          </form>
         </div>
         
@@ -92,4 +101,4 @@ render() {
 
 }
 }
-export default Login;
+export default withRouter (Login);
