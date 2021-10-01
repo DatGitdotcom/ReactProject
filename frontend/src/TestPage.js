@@ -1,20 +1,20 @@
-import React, { Component } from 'react'
-import { withRouter } from "react-router-dom";
+import React,{useState} from 'react'
 
-export class TestPage extends Component {
+function TestPage() {
+    const [name , setName]=useState('John')
 
-    showAlert() {
-        alert("I'm an alert");
-      }
-      
-    render() {
-        return (
-            <div>
-              <h1>Hi</h1>
-              <button onClick={this.showAlert}>show alert</button>  
-            </div>
-        )
+    function update(){
+        setName('mark');
+
     }
+  
+    return (
+        <div>
+            {name}
+           <input type="text" required placeholder="Password" />
+           <button onclick={update}> display</button>
+        </div>
+    )
 }
 
-export default withRouter (TestPage)
+export default TestPage

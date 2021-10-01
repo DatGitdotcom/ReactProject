@@ -7,7 +7,7 @@ export class UserHome extends Component {
     console.log("constructor")
   
     this.state = {
-       space: " ",
+       user: [],
      
     }
   }
@@ -37,18 +37,47 @@ export class UserHome extends Component {
             console.log(response.data)
         })
   };
+  Logout  =() =>  {
+    let zero="logout";
+    axios.interceptors.request.use(
+      config => {config.headers.authorization = `Bearer${" "}${""}`
+              return  config 
+    },error =>{
+      return Promise.reject(error)
+    }
+      
+    );
+    axios.post('http://localhost:4000/api/Logout')
+    .then(res => {
+       console.log(res)
+       localStorage.setItem(zero);
+    })
+  }
+  
  
   
 
   render() {
+    if(this.state.user){
+      return(
+        <div>
+        <h2> {this.state.user.username} is logged in</h2>
+        <button onClick={this.Logout}>show alert</button>
+      
+        </div>
+        )
+    }else{
+      return (
+        <div>
+          <h1>Home</h1>
+     
+        </div>
+      );
+    }
+
+    }
   
-    return (
-      <div>
-        <h1>Home</h1>
-   
-      </div>
-    );
-  }
+    
 }
 
 export default UserHome;
