@@ -12,7 +12,9 @@ import Postslist from './Postslist';
 import Login from './Login' ; 
 import UserHome from './UserHome';
 import EditUser from './EditUser';
-import TestPage from './TestPage';
+// import TestPage from './TestPage';
+// import Users from './Users'
+import LandingPage from './LandingPage';
 
 
 export class NavBar extends Component {
@@ -57,7 +59,7 @@ export class NavBar extends Component {
                 <UserHome/>
             </Route>
             <Route path="/TestPage">
-                <TestPage/>
+                <LandingPage/>
             </Route>
             </Switch>
       </div>
