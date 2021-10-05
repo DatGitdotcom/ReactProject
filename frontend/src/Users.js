@@ -1,29 +1,20 @@
-import React , { Component } from 'react'
+import React  from 'react'
 import {List, Datagrid , TextField , EditButton , DeleteButton} from 'react-admin'
 
-
-export class Users extends Component {
-    constructor(props) {
-        super(props)
-    
-        this.state = {
-             
-        }
-    }
-    
-    render() {
-        return  <List>
+const Users =(props) => {
+    return  <List {...props}>
                     <Datagrid>
                         <TextField source='id'/>
                         <TextField source='fname'/>
+                        <TextField source='lname'/>
                         <TextField source='username'/>
+                        <TextField source='email'/>
                         <EditButton basePath='/Edit'/> 
                         <DeleteButton basePath='/delete'/>
                     </Datagrid>
 
                 </List>
-    }
+    
 }
 
 export default Users
-

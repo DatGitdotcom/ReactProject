@@ -13,7 +13,7 @@ export class LandingPage extends Component {
     
 
     render() {
-        return <Admin dataProvider={restProvider ('http://localhost:4000/api/usersList')}>
+        return <Admin dataProvider={restProvider ('https://jsonplaceholder.typicode.com/posts')}>
             <Resource name='users' list={Users} />
 
         </Admin>

@@ -32,7 +32,7 @@ export class NavBar extends Component {
                 <Nav.Link as={Link} to={'/Login'}>Login</Nav.Link>
                 <Nav.Link as={Link} to={'/Register'}>Register</Nav.Link>
                 <Nav.Link as={Link} to={'/View'}>Views</Nav.Link>
-                <Nav.Link as={Link} to={'/TestPage'}>TestPage</Nav.Link>
+                
                 
                
             </Nav>
@@ -58,7 +58,7 @@ export class NavBar extends Component {
             <Route path="/UserHome">
                 <UserHome/>
             </Route>
-            <Route path="/TestPage">
+            <Route path="/AdminPage">
                 <LandingPage/>
             </Route>
             </Switch>

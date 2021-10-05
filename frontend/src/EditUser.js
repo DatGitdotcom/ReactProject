@@ -22,7 +22,12 @@ export class EditUser extends Component {
         axios.get(`http://localhost:4000/api/${this.state.id}`)
         .then(res=>{
                 this.setState({
-                    user: res.data})
+                    user:res.data,
+                    fname: res.data.fname,
+                    lname: res.data.lname,
+                    username: res.data.username,
+                    email: res.data.email,
+                  })
                     console.log(res.data)
         }
         
@@ -36,35 +41,35 @@ export class EditUser extends Component {
       
       FnameChange=(event)=>{
         this.setState({
-          user: event.target.value
+          fname: event.target.value
       
         })
       }
       LnameChange=(event)=>{
         this.setState({
-           user: event.target.value
+           lname: event.target.value
       
         })
       }
       UnameChange=(event)=>{
         this.setState({
-          user: event.target.value
+          username: event.target.value
       
         })
       }
       EmailChange=(event)=>{
         this.setState({
-          user: event.target.value
+          email: event.target.value
       
         })
       }
      
       submitForm = event =>{
           event.preventDefault();
-         let fname = this.state.user.fname;
-         let lname = this.state.user.lname;
-         let username = this.state.user.username;
-         let email = this.state.user.email;
+         let fname = this.state.fname;
+         let lname = this.state.lname;
+         let username = this.state.username;
+         let email = this.state.email;
           let editdata= this.state.id;
         let validate = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
           
@@ -79,7 +84,7 @@ export class EditUser extends Component {
             this.setState({heading:"Edit submitted"});
         }else{
           
-          this.setState({heading:"Some fields are incorrect, please review the edit"});
+          this.setState({heading:"Some fields are incorrect, please review the edit for"});
     
         }   
        
@@ -88,6 +93,32 @@ export class EditUser extends Component {
     }
     
     render() {
+      let firsname = '';
+      let lastname = '';
+      let emaila = ''; 
+      let valusername= '';
+    
+      let validateEmail = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
+     
+      if (this.state.fname ==='' &&  this.state.fname.length <=2) {
+        firsname = <span>Invalid Input</span>;
+      } else {
+        firsname = '';
+      }if (this.state.lname ==='' && this.state.lname.length <=2 ) {
+        lastname = <span>Invalid Input</span>;
+      } else {
+        lastname = '';
+       }if (this.state.username ==='' && this.state.username.length <=2 ) {
+        valusername = <span>Invalid Username</span>;
+      } else {
+        valusername = '';
+      }
+      if ( this.state.email !=='' && validateEmail.test(this.state.email)) {
+        emaila = '';
+      } else {
+        
+        emaila = <span>Invalid Email</span>;
+      }
       
       
       
@@ -100,19 +131,23 @@ export class EditUser extends Component {
          <h1>{this.state.heading} {this.state.user.fname} </h1>
              
                  <div className="form-group">                     
-                     <input type="text"  value={this.state.user.fname} onChange={this.FnameChange} />
+                     <input type="text" defaultValue={this.state.fname} value={this.state.fname} onChange={this.FnameChange} />
+                     {firsname}
              
                  </div>
                  <div className="form-group">
-                     <input type="text"   value={this.state.user.lname}   onChange={this.LnameChange} />
+                     <input type="text"   value={this.state.lname}   onChange={this.LnameChange} />
+                     {lastname}
              
                  </div>
                  <div className="form-group">
-                     <input type="text"   value={this.state.user.username}  onChange={this.UnameChange}  />
+                     <input type="text"   value={this.state.username}  onChange={this.UnameChange}  />
+                     {valusername}
              
                  </div>
                  <div className="form-group">
-                     <input type="email"  value={this.state.user.email} onChange={this.EmailChange}  />
+                     <input type="email"  value={this.state.email} onChange={this.EmailChange}  />
+                     {emaila}
              
                  
                  </div>

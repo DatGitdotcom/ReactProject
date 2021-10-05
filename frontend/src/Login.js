@@ -64,13 +64,14 @@ export class Login extends Component {
             
             
           }
-          showAlert=()=> {
-            this.props.history.push("/Home");
+          Admin=()=> {
+            this.props.history.push("/AdminPage");
           }
 
 
 
 render() {
+  
   
     return (
         <div class="container">
@@ -91,7 +92,7 @@ render() {
                   </div>
                   </div>
                    <button  type="submit" class="registerbtn">Login</button>
-                   <button onClick={this.showAlert}>show alert</button> 
+                   <button onClick={this.Admin}>Login to admin</button> 
                    
                  
          </form>

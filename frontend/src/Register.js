@@ -86,7 +86,7 @@ export class Register extends Component {
   
     render() {
         let firsname = '';
-        let  lastname = '';
+        let lastname = '';
         let emaila = ''; 
         let valusername= '';
         let valpass = ''; 

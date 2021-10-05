@@ -40,19 +40,10 @@ export class UserHome extends Component {
         })
   };
   Logout  =() =>  {
-    let zero="logout";
-    axios.interceptors.request.use(
-      config => {config.headers.authorization = `Bearer${" "}${""}`
-              return  config 
-    },error =>{
-      return Promise.reject(error)
-    }
-      
-    );
     axios.post('http://localhost:4000/api/Logout')
     .then(res => {
        console.log(res)
-       localStorage.setItem(zero);
+       localStorage.clear();
     })
   }
   
