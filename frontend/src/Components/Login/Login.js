@@ -48,7 +48,7 @@ export class Login extends Component {
 
               const data ={username , password }
               console.log(data)
-                    await  axios.post('http://localhost:4000/api/Login', data )
+                    await  axios.post('/Login', data )
                     .then(res => {
                       localStorage.setItem('token', res.data.token);
                       console.log('success',res)

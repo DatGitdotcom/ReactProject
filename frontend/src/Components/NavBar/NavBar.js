@@ -6,15 +6,15 @@ import {
     Route,
     Link
   } from "react-router-dom";
-import Register from './Register';
-import Home from './Home';
-import Postslist from './Postslist';
-import Login from './Login' ; 
-import UserHome from './UserHome';
-import EditUser from './EditUser';
+import Register from '../Register/Register';
+import Home from '../Landing_pages/Home';
+import Postslist from '../Landing_pages/Postslist';
+import Login from '../Login/Login' ; 
+import UserHome from '../Landing_pages/UserHome';
+import EditUser from '../Edit/EditUser';
 // import TestPage from './TestPage';
 // import Users from './Users'
-import LandingPage from './LandingPage';
+import LandingPage from '../Landing_pages/LandingPage';
 
 
 export class NavBar extends Component {

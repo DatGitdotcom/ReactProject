@@ -31,7 +31,7 @@ export class UserHome extends Component {
     }
       
     );
-    axios.post('http://localhost:4000/api/User')
+    axios.post('/User')
         .then(response =>{
             this.setState({
                 user : response.data
@@ -40,7 +40,7 @@ export class UserHome extends Component {
         })
   };
   Logout  =() =>  {
-    axios.post('http://localhost:4000/api/Logout')
+    axios.post('/Logout')
     .then(res => {
        console.log(res)
        localStorage.clear();

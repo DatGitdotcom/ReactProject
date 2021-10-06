@@ -34,14 +34,14 @@ export class Postslist extends Component {
     }
   
     deleteRegistered= async (_id)=>{
-       await axios.delete(`http://localhost:4000/api/${_id}`)
+       await axios.delete(`/${_id}`)
         .then(response =>{
             this.refreshUsers();
             console.log("success" + response)
         }).catch(error=>console.log(error));
     }
     refreshUsers(){
-        axios.get('http://localhost:4000/api/usersList')
+        axios.get('/usersList')
         .then(response =>{
             this.setState({
                 posts : response.data
@@ -98,7 +98,7 @@ export class Postslist extends Component {
       }
       
      Submitedit= async (Uid)=>{
-        await axios.patch(`http://localhost:4000/api/Edit/${Uid}` ,
+        await axios.patch(`/Edit/${Uid}` ,
          {
              fname: this.state.Ufname,
             lname:this.state.Ulname,

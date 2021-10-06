@@ -68,7 +68,7 @@ export class Register extends Component {
          
           
          
-            axios.post('http://localhost:4000/api/signup', this.state)
+            axios.post('/signup', this.state)
             .then(res => {
                console.log('success',res)
             })

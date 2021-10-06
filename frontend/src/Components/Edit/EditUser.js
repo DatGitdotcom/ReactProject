@@ -19,7 +19,7 @@ export class EditUser extends Component {
     }
     componentDidMount(){
        
-        axios.get(`http://localhost:4000/api/${this.state.id}`)
+        axios.get(`/${this.state.id}`)
         .then(res=>{
                 this.setState({
                     user:res.data,
@@ -77,7 +77,7 @@ export class EditUser extends Component {
 
             const data ={fname, lname , username , email}
             console.log(data, editdata)
-           axios.patch(`http://localhost:4000/api/Edit/${editdata}` , data)
+           axios.patch(`/Edit/${editdata}` , data)
             .then(res => {
                console.log('success',res)
             })
@@ -91,7 +91,6 @@ export class EditUser extends Component {
       
       
     }
-    
     render() {
       let firsname = '';
       let lastname = '';

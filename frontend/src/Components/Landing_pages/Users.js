@@ -16,5 +16,4 @@ const Users =(props) => {
                 </List>
     
 }
-
 export default Users
