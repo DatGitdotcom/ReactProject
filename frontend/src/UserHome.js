@@ -14,7 +14,6 @@ export class UserHome extends Component {
     }
   }
 
-
   componentDidMount() {
     const accesstoken=localStorage.getItem('token') ;
    /* const authAxios = axios.create({
@@ -39,12 +38,15 @@ export class UserHome extends Component {
             console.log(response.data)
         })
   };
+
+
+ 
   Logout  =() =>  {
     axios.post('/Logout')
     .then(res => {
        console.log(res)
        localStorage.clear();
-    })
+    });
   }
   
  
