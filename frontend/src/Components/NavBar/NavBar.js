@@ -12,7 +12,7 @@ import Home from '../Info/Home';
 import Postslist from '../UserFunctions/Postslist';
 import Login from '../UserFunctions/Login' ; 
 import UserHome from '../UserFunctions/UserHome' ;
-import EditUser from '/../UserFunctions/EditUser';
+import EditUser from '../UserFunctions/EditUser';
 // import TestPage from './TestPage';
 // import Users from './Users'
 import LandingPage from '../ReactAdmin/LandingPage';

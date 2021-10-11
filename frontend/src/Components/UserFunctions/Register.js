@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './App.css';
+//import '.src/App.css';
 import axios from 'axios';
 
 export class Register extends Component {
