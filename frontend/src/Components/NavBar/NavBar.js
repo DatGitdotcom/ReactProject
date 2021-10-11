@@ -7,15 +7,15 @@ import {
     Route,
     Link
   } from "react-router-dom";
-import Register from './Register';
-import Home from './Home';
-import Postslist from './Postslist';
-import Login from './Login' ; 
-import UserHome from './UserHome' ;
-import EditUser from './EditUser';
+import Register from '../UserFunctions/Register';
+import Home from '../Info/Home';
+import Postslist from '../UserFunctions/Postslist';
+import Login from '../UserFunctions/Login' ; 
+import UserHome from '../UserFunctions/UserHome' ;
+import EditUser from '/../UserFunctions/EditUser';
 // import TestPage from './TestPage';
 // import Users from './Users'
-import LandingPage from './LandingPage';
+import LandingPage from '../ReactAdmin/LandingPage';
 
 
 export class NavBar extends Component {
