@@ -7,7 +7,7 @@ import {
     Route,
     Link
   } from "react-router-dom";
-import Register from '../UserFunctions/Register';
+import CreateUser from '../UserFunctions/CreateUser';
 import Home from '../Info/Home';
 import Postslist from '../UserFunctions/Postslist';
 import Login from '../UserFunctions/Login' ; 
@@ -31,7 +31,7 @@ export class NavBar extends Component {
             <Nav className="me-auto">
                 <Nav.Link as={Link} to={'/Home'}>Home</Nav.Link>
                 <Nav.Link as={Link} to={'/Login'}>Login</Nav.Link>
-                <Nav.Link as={Link} to={'/Register'}>Register</Nav.Link>
+                <Nav.Link as={Link} to={'/CreateUser'}>Create User</Nav.Link>
                 <Nav.Link as={Link} to={'/View'}>Views</Nav.Link>
                 
                 
@@ -47,8 +47,8 @@ export class NavBar extends Component {
             <Route exact path="/Login">
                 <Login/>
             </Route>
-            <Route exact path="/Register">
-                <Register/>
+            <Route exact path="/CreateUser">
+                <CreateUser/>
             </Route>
             <Route path="/Edit/:_id">
                 <EditUser/>
