@@ -5,6 +5,7 @@ const app = express()
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const routesUrls = require ('./routes/routes')
+const Adminroutes = require ('./routes/RestRoutes')
 //ensuring all ports can interact with the server 
 const cors = require ('cors')
 const bodyParser = require('body-parser')
@@ -26,6 +27,6 @@ app.use(cors({  credentials:true
 
 //routes
 app.use('/api', routesUrls)
-
+app.use('/RestApi', Adminroutes)
 //
 app.listen(4000 , () => ("Server is running")) 

@@ -15,7 +15,7 @@ router.get("/usersList", async (req, res) => {
     const postList = await singUpTempcopy.find();
     res.json(postList);
   } catch (err) {
-    res.json({ message: err });
+    res.status(500).json({ message: err.message });
   }
 });
 // post data to db using model
