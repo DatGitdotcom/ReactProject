@@ -14,8 +14,9 @@ import Login from '../UserFunctions/Login' ;
 import UserHome from '../UserFunctions/UserHome' ;
 import EditUser from '../UserFunctions/EditUser';
 // import TestPage from './TestPage';
-// import Users from './Users'
-import LandingPage from '../ReactAdmin/LandingPage';
+//import Users from '../ReactAdmin/Users'
+import LandingPage from '../ReactAdmin/LandingPage'
+
 
 
 export class NavBar extends Component {
@@ -33,7 +34,7 @@ export class NavBar extends Component {
                 <Nav.Link as={Link} to={'/Login'}>Login</Nav.Link>
                 <Nav.Link as={Link} to={'/CreateUser'}>Create User</Nav.Link>
                 <Nav.Link as={Link} to={'/View'}>Views</Nav.Link>
-                
+                <Nav.Link as={Link} to={'/Users'}>Users</Nav.Link>
                 
                
             </Nav>
@@ -62,7 +63,11 @@ export class NavBar extends Component {
             <Route path="/AdminPage">
                 <LandingPage/>
             </Route>
+            <Route path="/Users">
+                <LandingPage/>
+            </Route>
             </Switch>
+            
       </div>
     </Router>
 

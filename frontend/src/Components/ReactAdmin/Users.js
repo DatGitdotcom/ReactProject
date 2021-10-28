@@ -4,10 +4,10 @@ import {List, Datagrid , TextField , EditButton , DeleteButton} from 'react-admi
 const Users =(props) => {
     return  <List {...props}>
                     <Datagrid>
-                        <TextField source='id'/>
+                        <TextField source='_id'/>
                         <TextField source='fname'/>
                         <TextField source='lname'/>
-                        <TextField source='username'/>
+                        
                         <TextField source='email'/>
                         <EditButton basePath='/Edit'/> 
                         <DeleteButton basePath='/delete'/>
@@ -17,3 +17,5 @@ const Users =(props) => {
     
 }
 export default Users
+
+//<TextField source='username'/>

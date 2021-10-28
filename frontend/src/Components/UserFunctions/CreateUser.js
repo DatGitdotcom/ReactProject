@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 //import '.src/App.css';
 import axios from 'axios';
 
-export class Register extends Component {
+export class CreateUser extends Component {
     constructor(props) {
         super(props)
         console.log("constructor")
@@ -144,11 +144,11 @@ export class Register extends Component {
                       {valpass}
                       </div>
                       </div>
-                      <button  type="submit" class="registerbtn">Register</button>
+                      <button  type="submit" class="registerbtn">Create User</button>
              </form>
             </div>
         )
 
 }
 }
-export default Register ;
+export default CreateUser ;
